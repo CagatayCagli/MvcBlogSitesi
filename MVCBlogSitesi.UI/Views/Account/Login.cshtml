@@ -1,0 +1,56 @@
+﻿@using System.Web.Optimization
+@using MVCBlogSitesi.DAL.Entities
+@model Users
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SB Admin - Start Bootstrap Template</title>
+    @Styles.Render("~/bundles/adminstyles")
+</head>
+<body class="bg-dark">
+    <div class="container">
+        <span class="text-danger">@ViewBag.Msg</span>
+        <div class="card card-login mx-auto mt-5">
+            <div class="card-header">Login</div>
+            <div class="card-body">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label>E-Posta Adresi :</label>
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @type = "email", @placeholder = "E-Posta giriniz" })
+                        <span class="text-danger">@Html.ValidationMessageFor(x => x.Email)</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Şifre :</label>
+                        @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @type = "password", @placeholder = "Şifre giriniz" })
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                @Html.CheckBoxFor(x => x.RememberMe, new { @class = "form-check-label", @type = "checkbox" })Beni Hatırla
+                            </label>
+                        </div>
+                    </div>
+                        <input type="submit" class="btn btn-primary" value="Giriş Yap" />
+                }
+
+                <div class="text-center">
+                    <a class="d-block small mt-3" href="register.html">Hesap Oluşturun</a>
+                    <a class="d-block small" href="forgot-password.html">Şifrenizi mi Unuttunuz?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/adminscripts")
+</body>
+</html>
